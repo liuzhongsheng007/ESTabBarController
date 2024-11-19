@@ -96,6 +96,12 @@ open class ESTabBarController: UITabBarController, ESTabBarDelegate {
             tabBar.tabBarController = self
             return tabBar
         }()
+        if UIDevice.current.userInterfaceIdiom == .pad {
+              if #available(iOS 18.0, *) {
+                  traitOverrides.horizontalSizeClass = .compact
+                  view.addSubview(tabBar)
+              }
+        }
         self.setValue(tabBar, forKey: "tabBar")
     }
 
