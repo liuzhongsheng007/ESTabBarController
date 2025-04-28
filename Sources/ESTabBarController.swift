@@ -99,6 +99,9 @@ open class ESTabBarController: UITabBarController, ESTabBarDelegate {
         if UIDevice.current.userInterfaceIdiom == .pad {
               if #available(iOS 18.0, *) {
                   traitOverrides.horizontalSizeClass = .compact
+                  if let classType = NSClassFromString("_UITabContainerView"), let view = view.subviews.first(where: { $0.isKind(of: classType) }) {
+                      view.isHidden = true
+                    }
                   view.addSubview(tabBar)
               }
         }
